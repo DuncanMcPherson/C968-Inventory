@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Page
+    x:Class="Inventory.Pages.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Inventory.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:tools="using:CommunityToolkit.WinUI.UI.Controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition Height="3*" />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="0" FontSize="32">Inventory Management System</TextBlock>
+        <Grid Grid.Column="0" Grid.Row="1" Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="3*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" FontSize="24">Parts</TextBlock>
+            <TextBox Grid.Column="2" VerticalAlignment="Center" PlaceholderText="Search Parts" Name="searchPartsBox" />
+        </Grid>
+        <!-- TODO: Bind to parts list -->
+        <!-- <GridView Grid.Column="0" Grid.Row="2" Name="partsView" ItemsSource="{x:Bind ViewModel.Parts}"></GridView> -->
+        <tools:DataGrid Grid.Column="0" Grid.Row="2" Name="PartsView" SelectionChanged="SelectPart" ItemsSource="{x:Bind ViewModel.Parts}"></tools:DataGrid>
+        <Grid Grid.Column="0" Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*" />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="1" Click="AddPart">Add</Button>
+            <Button Grid.Column="2" Click="UpdatePart" IsEnabled="{x:Bind EnablePartButtons}">Modify</Button>
+            <Button Grid.Column="3" IsEnabled="{x:Bind EnablePartButtons}" Click="DeletePart">Delete</Button>
+        </Grid>
+        <Grid Grid.Column="1" Row="1" Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="3*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" FontSize="24">Products</TextBlock>
+            <TextBox Grid.Column="2"  VerticalAlignment="Center" PlaceholderText="Search Products" Name="searchProductsBox" />
+        </Grid>
+        <!-- TODO: Bind to products list -->
+        <GridView Grid.Column="1" Grid.Row="2" Name="productsView" ItemsSource="{x:Bind ViewModel.Products}"></GridView>
+        <Grid Column="1" Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="1" Click="AddProduct">Add</Button>
+            <Button Grid.Column="2" Click="UpdateProduct">Modify</Button>
+            <Button Grid.Column="3" Name="deleteProductButton">Delete</Button>
+        </Grid>
+        <Button Grid.Column="1" Grid.Row="4" HorizontalAlignment="Right" Margin="15 0" Click="ExitApplication">Exit</Button>
+    </Grid>
+</Page>

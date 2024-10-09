@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="Inventory.Pages.PartPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Inventory.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="6*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0" Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" FontSize="18" Text="{x:Bind _viewModel.FormTitle}" />
+            <RadioButtons Grid.Column="1" SelectionChanged="ValueSelected" MaxColumns="2" SelectedIndex="0" Name="PartTypeSelector">
+                <x:String>In-House</x:String>
+                <x:String>Outsourced</x:String>
+            </RadioButtons>
+        </Grid>
+        <Grid Grid.Column="0" Grid.Row="1" ColumnSpacing="15">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Column="0" Grid.Row="0" HorizontalTextAlignment="End">ID</TextBlock>
+            <TextBox Grid.Column="1" Grid.Row="0" VerticalAlignment="Top" IsEnabled="False" Name="IdBox" TextChanged="OnTextChanged"></TextBox>
+            <TextBlock Grid.Column="0" Grid.Row="1" HorizontalTextAlignment="End">Name</TextBlock>
+            <TextBox Grid.Column="1" Grid.Row="1" VerticalAlignment="Top" Name="NameBox" TextChanged="OnTextChanged"></TextBox>
+            <TextBlock Grid.Column="0" Grid.Row="2" HorizontalTextAlignment="End">Inventory</TextBlock>
+            <TextBox Grid.Column="1" Grid.Row="2" VerticalAlignment="Top" Name="InventoryBox" TextChanged="OnTextChanged"></TextBox>
+            <TextBlock Grid.Column="0" Grid.Row="3" HorizontalTextAlignment="End">Price</TextBlock>
+            <TextBox Grid.Column="1" Grid.Row="3" VerticalAlignment="Top" Name="PriceBox" TextChanged="OnTextChanged"></TextBox>
+            <Grid Grid.Column="0" Grid.Row="4" ColumnSpan="2" ColumnSpacing="15">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="1" HorizontalTextAlignment="End">Max</TextBlock>
+                <TextBox Grid.Column="2" VerticalAlignment="Top" Name="MaxEntryBox" TextChanged="OnTextChanged"></TextBox>
+                <TextBlock Grid.Column="3" HorizontalTextAlignment="End">Min</TextBlock>
+                <TextBox Grid.Column="4" VerticalAlignment="Top" Name="MinEntryBox" TextChanged="OnTextChanged"></TextBox>
+            </Grid>
+            <!-- <TextBlock Grid.Column="0" Grid.Row="4">ID</TextBlock> -->
+            <TextBlock Grid.Column="0" Grid.Row="5" Text="{x:Bind _viewModel.MachineCompanyDescriptor, Mode=OneWay}" HorizontalTextAlignment="End"></TextBlock>
+            <TextBox Grid.Column="1" Grid.Row="5" VerticalAlignment="Top" Name="DescriptorBox" TextChanged="OnTextChanged"></TextBox>
+        </Grid>
+        <Grid Grid.Column="0"  Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <!-- TODO: Save button behavior -->
+            <Button IsEnabled="{x:Bind IsSaveEnabled, Mode=OneWay}" Grid.Column="1" Click="SavePart">Save</Button>
+            <Button Grid.Column="2" Click="CancelPart">Cancel</Button>
+        </Grid>
+    </Grid>
+</Page>
